@@ -26,3 +26,7 @@ DepthCamera*
 DepthCapture*
 .vscode
 .flake8
+
+# Dataset contents (data itself is not tracked)
+avlmaps/dataset/
+dataset/ESC-50-master/

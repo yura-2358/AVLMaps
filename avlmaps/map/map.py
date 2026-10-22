@@ -212,8 +212,12 @@ class Map:
         rad = np.deg2rad(curr_angle_deg)
         pix = meters / self.cs
 
+        # curr_angle_degはROS標準規約（x前方基準、反時計回り正、base_rot_mat2theta参照）。
+        # 本関数はHabitat時代の時計回り正規約のままだったため、j方向のみ符号反転して整合させる
+        # （2026-09-22実機Stage3検証で発見、docs/step4.md参照。他のget_north/south/east/west_pos等
+        # 同じ角度規約を使う関数は未検証のまま、別途要確認）
         new_i = i - pix * np.cos(rad)
-        new_j = j + pix * np.sin(rad)
+        new_j = j - pix * np.sin(rad)
         return [new_i, new_j]
 
     def filter_small_objects(self, bbox_list: List[List[int]], area_thres: int = 50) -> List[int]:

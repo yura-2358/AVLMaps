@@ -5,8 +5,11 @@ from setuptools import setup
 description = ["Audio Visual Language Maps for Robot Navigation"]
 
 root = Path(__file__).parent
-with open(str(root / "README.md"), "r", encoding="utf-8") as f:
-    readme = f.read()
+try:
+    with open(str(root / "README.md"), "r", encoding="utf-8") as f:
+        readme = f.read()
+except FileNotFoundError:
+    readme = ""
 version = "0.0"
 # with open(str(root / 'requirements.txt'), 'r') as f:
 #     dependencies = f.read().split('\n')
